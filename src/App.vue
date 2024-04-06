@@ -6,7 +6,7 @@ import Start from './components/Start.vue'
   <Start />
 </template>
 
-<style >
+<style>
 body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -14,5 +14,9 @@ body {
   text-align: center;
   color: gainsboro;
   width: 100%;
+}
+
+html {
+  overscroll-behavior: none;
 }
 </style>
