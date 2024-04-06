@@ -1,312 +1,111 @@
-const sexes = [
+const postes = [
 	{
 		id: 1,
-		output: "H",
-		text: "Homme",
+		output: "21",
+		text: "21 - Giratoire D966 x D30 - BRIMONT",
 	},
 	{
 		id: 2,
-		output: "F",
-		text: "Femme",
-	},
-];
-
-const zone = [
-	{
-		id: 1,
-		output: "PARVIS",
-		text: "PARVIS",
-	},
-	{
-		id: 2,
-		output: "BV",
-		text: "BV",
+		output: "22",
+		text: "22 - Nord croisement D74/D31 - BOULT-SUR-SUIPPE",
 	},
 	{
 		id: 3,
-		output: "QUAIS",
-		text: "QUAIS",
+		output: "23",
+		text: "23 - Entrée Est de Bétheniville - BETHENIVILLE",
 	},
-];
-
-const usagers = [
-	{
-		id: 1,
-		output: "Usager",
-		text: "Oui",
-	},
-	{
-		id: 2,
-		output: "Non-usager",
-		text: "Non",
-	},
-];
-
-const typeUsagers = [
-	{
-		id: 1,
-		output: "Correspondant",
-		text: "Vous êtes en correspondance train-train",
-	},
-	{
-		id: 2,
-		output: "Partant",
-		text: "Vous allez prendre un train",
-	},
-	{
-		id: 3,
-		output: "Arrivant",
-		text: "Vous êtes descendu d'un train",
-	},
-];
-
-const motif = [
-	{ id: 1, output: "travail", text: "travail" },
-	{ id: 2, output: "Professionnel", text: "Professionnel" },
-	{ id: 3, output: "Loisir", text: "Loisir" },
-	{ id: 4, output: "Etude", text: "Etude" },
-	{ id: 5, output: "Demarche", text: "Demarche" },
-	{ id: 6, output: "Autre", text: "Autre" },
-];
-
-const services = [
-	{ id: 1, output: "Sanitaires", text: "Des sanitaires" },
-	{
-		id: 2,
-		output: "Vélos",
-		text: "Un atelier de réparation et/ou de location vélos",
-	},
-	{ id: 3, output: "Santé", text: "Un centre de santé" },
 	{
 		id: 4,
-		output: "Tourisme",
-		text: "Une antenne de l'office du tourisme",
+		output: "24",
+		text: "24 - Sortie Nord-Ouest de Saint-Hilaire-le-Grand - SAINT-HILAIRE-LE-GRAND",
 	},
-	{ id: 5, output: "Photomaton", text: "Un Photomaton" },
-	{ id: 6, output: "Autre", text: "Autres --> précisez" },
-];
-const commerces = [
-	{ id: 1, output: "Café", text: "Un café" },
-	{ id: 2, output: "Presse", text: "Vente de presse" },
-	{ id: 3, output: "Supérette", text: "Une supérette" },
 	{
-		id: 4,
-		output: "Distributeur",
-		text: "Un distributeur de boissons/nourriture",
+		id: 5,
+		output: "25",
+		text: "25 - Giratoire D944 x D19 - LIVRY-LOUVERCY",
 	},
-	{ id: 5, output: "Proximité", text: "Un commerce de proximité --> précisez" },
-	{ id: 6, output: "Autre", text: "Autres --> précisez" },
+	{
+		id: 6,
+		output: "26",
+		text: "26 - Giratoire D951 x D71 - ST IMOGES",
+	},
+	{
+		id: 7,
+		output: "27",
+		text: "23 - Au Sud de la D2 - ANTHENAY",
+	},
 ];
 
 const frequence = [
-	{
-		id: 1,
-		output: "Ts les jrs",
-		text: "Tous les jours de la semaine ou presque",
-	},
-	{ id: 2, output: "1-2 / smn", text: "1 à 2 fois par semaine" },
-	{ id: 3, output: "Plrs / mois", text: "1 ou plusieurs fois par mois" },
-	{ id: 4, output: "-1 / mois", text: "Moins d'une fois par mois" },
-	{ id: 5, output: "Ts les ans", text: "Tous les ans" },
-	{ id: 6, output: "1ière", text: "C'est la première fois" },
+
+	{ id: 1, output: "1", text: "tous les jours ou presque" },
+	{ id: 2, output: "2", text: "1 ou plusieurs fois par semaine" },
+	{ id: 3, output: "3", text: "3 a 4 fois par mois" },
+	{ id: 4, output: "4", text: "Plus rarement" },
 ];
 
-const csp = [
-	{
-		id: 1,
-		output: "Cadre",
-		text: "Cadre, Profession libérale ou intellectuelle, Chef d'entreprise > 10 salariés",
-	},
-	{ id: 2, output: "Ouvrier", text: "Ouvrier, Employé" },
-	{ id: 3, output: "Technicien", text: "Technicien, Agent de maîtrise" },
+const types = [
+	{ id: 1, output: 1, text: "VL" },
+	{ id: 2, output: 2, text: "VL + caravane ou remorque" },
+	{ id: 3, output: 3, text: "Camping-Car" },
 	{
 		id: 4,
-		output: "Artisan",
-		text: "Artisan, Commerçant, Chef d'entreprise TPE",
+		output: 4,
+		text: "Fourgonnettes et utilitaires transportant du matériel (artisan…)",
 	},
-	{ id: 5, output: "Enseignant", text: "Enseignant, Professeur" },
-	{ id: 6, output: "Militaire", text: "Militaire" },
-	{ id: 7, output: "Agriculteur", text: "Agriculteur, Exploitant agricole" },
-	{ id: 8, output: "Etudiant", text: "Etudiant (après le bac)" },
-	{ id: 9, output: "Scolaire", text: "Scolaire (avant le bac)" },
-	{ id: 10, output: "Retraité", text: "Retraité" },
-	{ id: 11, output: "Sans emploi", text: "Sans emploi" },
-	{ id: 12, output: "Autre", text: "Autre" },
-];
-
-const nv_motif_presence = [
-	{ id: 1, output: "Partant-Bus", text: "Vous venez prendre un bus ou car" },
-	{ id: 2, output: "Arrivant-Bus", text: "Vous êtes descendu d'un bus ou car" },
-	{ id: 3, output: "Attendre", text: "Vous venez attendre quelqu'un" },
-	{ id: 4, output: "Accompagner", text: "Vous venez accompagner quelqu'un" },
-	{ id: 5, output: "Autre", text: "Autre -> précisez :" },
-];
-
-const nv_bus_car_diffusion = [
-	{ id: 1, output: "B1", text: "C'Bus 1" },
-	{ id: 2, output: "B2", text: "C'Bus 2" },
-	{ id: 3, output: "B3", text: "C'Bus 3" },
-	{ id: 4, output: "C3", text: "Car REMI 3" },
-	{ id: 5, output: "C3A", text: "Car REMI 3A" },
-	{ id: 6, output: "C9", text: "Car REMI 9" },
-	{ id: 7, output: "C9A", text: "Car REMI 9A" },
-	{ id: 8, output: "C32A", text: "Car REMI 32A" },
-	{ id: 9, output: "C32B", text: "Car REMI 32B" },
-	{ id: 10, output: "C434", text: "Car REMI 434" },
-	{ id: 10, output: "Autre", text: "Autre - précisez" },
-];
-const nv_bus_car_rabattement = [
-	{ id: 1, output: "B1", text: "C'Bus 1" },
-	{ id: 2, output: "B2", text: "C'Bus 2" },
-	{ id: 3, output: "B3", text: "C'Bus 3" },
-	{ id: 4, output: "C3", text: "Car REMI 3" },
-	{ id: 5, output: "C3A", text: "Car REMI 3A" },
-	{ id: 6, output: "C9", text: "Car REMI 9" },
-	{ id: 7, output: "C9A", text: "Car REMI 9A" },
-	{ id: 8, output: "C32A", text: "Car REMI 32A" },
-	{ id: 9, output: "C32B", text: "Car REMI 32B" },
-	{ id: 10, output: "C434", text: "Car REMI 434" },
-	{ id: 10, output: "Autre", text: "Autre - précisez" },
-];
-
-const nv_services = [
-	{ id: 1, output: "Sanitaires", text: "Des sanitaires" },
-	{
-		id: 2,
-		output: "Vélos",
-		text: "Un atelier de réparation et/ou de location vélos",
-	},
-	{ id: 3, output: "Santé", text: "Un centre de santé" },
-	{
-		id: 4,
-		output: "Tourisme",
-		text: "Une antenne de l'office du tourisme",
-	},
-	{ id: 5, output: "Photomaton", text: "Un Photomaton" },
-	{ id: 6, output: "Autre", text: "Autres --> précisez" },
-];
-
-const nv_commerces = [
-	{ id: 1, output: "Café", text: "Un café" },
-	{ id: 2, output: "Presse", text: "Vente de presse" },
-	{ id: 3, output: "Supérette", text: "Une supérette" },
-	{
-		id: 4,
-		output: "Distributeur",
-		text: "Un distributeur de boissons/nourriture",
-	},
-	{ id: 5, output: "Proximité", text: "Un commerce de proximité --> précisez" },
-	{ id: 6, output: "Autre", text: "Autres --> précisez" },
-];
-const p_intermodalite_rabattement = [
-	{ id: 1, output: "Pied", text: "A pied exclusivement" },
-	{ id: 2, output: "Conducteur", text: "Voiture conducteur" },
-	{ id: 3, output: "Passager", text: "Voiture passager" },
-	{ id: 4, output: "Location", text: "Voiture de location" },
-	{ id: 5, output: "Bus", text: "Bus ou Car" },
-	{ id: 6, output: "Moto", text: "En scooter/moto" },
-	{ id: 7, output: "Taxi", text: "Taxi" },
-	{ id: 8, output: "Vélo", text: "Vélo" },
-	{ id: 9, output: "Trottinette", text: "Trottinette" },
-	{ id: 10, output: "Autre", text: "Autre -> précisez :" },
-];
-
-
-
-const a_intermodalite_diffusion = [
-	{ id: 1, output: "Pied", text: "A pied exclusivement" },
-	{ id: 2, output: "Conducteur", text: "Voiture conducteur" },
-	{ id: 3, output: "Passager", text: "Voiture passager" },
-	{ id: 4, output: "Location", text: "Voiture de location" },
-	{ id: 5, output: "Bus", text: "Bus ou Car" },
-	{ id: 6, output: "Moto", text: "En scooter/moto" },
-	{ id: 7, output: "Taxi", text: "Taxi" },
-	{ id: 8, output: "Vélo", text: "Vélo" },
-	{ id: 9, output: "Trottinette", text: "Trottinette" },
-	{ id: 10, output: "Autre", text: "Autre -> précisez :" },
-];
-
-const p_detail_stationnement_rabattement = [
-	{
-		id: 1,
-		output: "Gare_N",
-		text: "Parking de la gare au Nord des arrêts de Bus",
-	},
-	{
-		id: 2,
-		output: "Gare_S",
-		text: "Parking de la gare côté Sud proche du Centre de santé au travail",
-	},
-	{ id: 3, output: "Médiathèque", text: "Parking de la Médiathèque" },
-	{ id: 4, output: "Bd_Grindelle", text: "Boulevard Grindelle" },
 	{
 		id: 5,
-		output: "Halle",
-		text: "Parking de la Halle de l'autre côté des voies ferrées",
+		output: 5,
+		text: "Fourgonnettes et utilitaires transportant de la marchandise",
 	},
-	{ id: 6, output: "Autre", text: "Autre : préciser" },
+	{ id: 6, output: 6, text: "PL porteur" },
+	{ id: 7, output: 7, text: "PL articulé, semi-remorque" },
+	{ id: 8, output: 8, text: "PL train routier (porteur + remorque)" },
 ];
 
-const p_detail_depose_rabattement = [
-	{ id: 1, output: "Déposé", text: "Déposé par une voiture repartie" },
+const occupants = [
+	{ id: 1, output: "1", text: "1" },
+	{ id: 2, output: "2", text: "2" },
+	{ id: 3, output: "3", text: "3" },
+	{ id: 4, output: "4", text: "4" },
+	{ id: 5, output: "5", text: "5" },
+	{ id: 6, output: "6", text: "6" },
+	{ id: 7, output: "7", text: "7" },
+	{ id: 8, output: "8", text: "8" },
+	{ id: 9, output: "9", text: "9" },
+];
+
+
+const motif = [
+	{ id: 1, output: "0", text: "domicile" },
+	{ id: 2, output: "1", text: "travail" },
+	{ id: 3, output: "2", text: "affaires professionnelles" },
+	{ id: 4, output: "3", text: "études" },
+	{ id: 5, output: "4", text: "achats" },
+	{ id: 6, output: "5", text: "soins, démarches admin" },
+	{ id: 7, output: "6", text: "loisirs" },
+	{ id: 8, output: "7", text: "visites" },
+	{ id: 9, output: "8", text: "vacances, week-end, tourisme" },
+	{ id: 10, output: "9", text: "rabattement sur transport en commun" },
+	{ id: 11, output: "10", text: "accompagnement + domicile" },
+	{ id: 12, output: "11", text: "accompagnement + travail" },
+	{ id: 13, output: "12", text: "accompagnement + affaires professionnelles" },
+	{ id: 14, output: "13", text: "accompagnement + études" },
+	{ id: 15, output: "14", text: "accompagnement + achats" },
+	{ id: 16, output: "15", text: "accompagnement + soins, démarches admin" },
+	{ id: 17, output: "16", text: "accompagnement + loisirs" },
+	{ id: 18, output: "17", text: "accompagnement + visites" },
 	{
-		id: 2,
-		output: "Covoitureur",
-		text: "Covoitureur d'une voiture stationnée",
+		id: 19,
+		output: "18",
+		text: "accompagnement + vacances, week-end, tourisme",
 	},
+	{
+		id: 20,
+		output: "19",
+		text: "accompagnement + rabattement sur transport en commun",
+	},
+	{ id: 21, output: "99", text: "autre" },
 ];
 
-const p_detail_bus_car = [
-	{ id: 1, output: "B1", text: "C'Bus 1" },
-	{ id: 2, output: "B2", text: "C'Bus 2" },
-	{ id: 3, output: "B3", text: "C'Bus 3" },
-	{ id: 4, output: "C3", text: "Car REMI 3" },
-	{ id: 5, output: "C3A", text: "Car REMI 3A" },
-	{ id: 6, output: "C9", text: "Car REMI 9" },
-	{ id: 7, output: "C9A", text: "Car REMI 9A" },
-	{ id: 8, output: "C32A", text: "Car REMI 32A" },
-	{ id: 9, output: "C32B", text: "Car REMI 32B" },
-	{ id: 10, output: "C434", text: "Car REMI 434" },
-	{ id: 10, output: "Autre", text: "Autre - précisez" },
-];
-
-const p_detail_velo = [
-	{ id: 1, output: "Arceaux", text: "Sur les arceaux devant la gare" },
-	{ id: 2, output: "Train", text: "Je prends mon vélo dans le train" },
-	{ id: 3, output: "Autre", text: "Autre - précisez" },
-];
-const p_detail_trottinette = [
-	{ id: 1, output: "Arceaux", text: "Sur les arceaux devant la gare" },
-	{ id: 2, output: "Train", text: "Je prends mon vélo dans le train" },
-	{ id: 3, output: "Autre", text: "Autre - précisez" },
-];
-
-const p_origine_commune = [
-	{ id: 1, output: "Châteaudun", text: "Châteaudun" },
-	{ id: 2, output: "Autre", text: "Autre commune : précisez" },
-];
-
-export {
-	sexes,
-	zone,
-	usagers,
-	typeUsagers,
-	motif,
-	frequence,
-	services,
-	commerces,
-	csp,
-	nv_motif_presence,
-	nv_bus_car_diffusion,
-	nv_bus_car_rabattement,
-	nv_services,
-	nv_commerces,
-	p_intermodalite_rabattement,
-	p_detail_stationnement_rabattement,
-	p_detail_depose_rabattement,
-	p_detail_bus_car,
-	p_detail_velo,
-	p_detail_trottinette,
-	p_origine_commune,
-	a_intermodalite_diffusion,
-};
+export { postes, types, occupants, motif, frequence };
