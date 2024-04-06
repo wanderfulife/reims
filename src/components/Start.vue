@@ -33,7 +33,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q8-VL" v-if="level === 4 && (Type_Vehicule <= 4)">
+		<div id="Q8-VL" v-if="level === 4 && Type_Vehicule <= 4">
 			<h1>Nombre d'occupants</h1>
 			<select v-model="VL_Occupants" class="form-control">
 				<option v-for="option in occupants" :key="option.id" :value="option.output">
@@ -44,7 +44,25 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q9-VL" v-if="level === 5">
+		<div id="Q7bis-PL" v-if="level === 4 && Type_Vehicule > 4">
+			<h1>Type de carrosserie</h1>
+			<select v-model="PL_Type" class="form-control">
+				<option v-for="option in pl_type" :key="option.id" :value="option.output">
+					{{ option.text }}
+				</option>
+			</select>
+			<button v-if="PL_Type" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div id="Q8-PL" v-if="level === 5 && Type_Vehicule > 4">
+			<h1>Nombre d'essieux qui touchent le sol</h1>
+			<input class="form-control" type="text" v-model="Essieux" placeholder="Precisez">
+			<button v-if="Essieux" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div id="Q9-VL" v-if="level === 5 && Type_Vehicule <= 4">
 			<h1>D’où venez vous?</h1>
 			<div>
 				<CommuneSelector v-model="VL_Origine" />
@@ -53,7 +71,29 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q10-VL" v-if="level === 6">
+		<div id="Q9-PL" v-if="level === 6 && Type_Vehicule > 4">
+			<h1>Dernier lieu de déchargement</h1>
+			<div>
+				<CommuneSelector v-model="PL_Origine" />
+			</div>
+			<button v-if="PL_Origine" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+
+
+		<div id="Q9bis-PL" v-if="level === 7 && Type_Vehicule > 4">
+			<h1>Venez-vous du port ?</h1>
+			<select v-model="PL_OPort" class="form-control">
+				<option v-for="option in port" :key="option.id" :value="option.output">
+					{{ option.text }}
+				</option>
+			</select>
+			<button v-if="PL_OPort" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div id="Q10-VL" v-if="level === 6 && Type_Vehicule <= 4">
 			<h1>Motif Origine</h1>
 			<select v-model="VL_Motif_Origine" class="form-control">
 				<option v-for="option in motif" :key="option.id" :value="option.output">
@@ -64,7 +104,18 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q11-VL" v-if="level === 7">
+		<div id="Q10-PL" v-if="level === 8 && Type_Vehicule > 4">
+			<h1>Motif Origine</h1>
+			<select v-model="Motif_OPL" class="form-control">
+				<option v-for="option in motif_pl" :key="option.id" :value="option.output">
+					{{ option.text }}
+				</option>
+			</select>
+			<button v-if="Motif_OPL" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div id="Q11-VL" v-if="level === 7 && Type_Vehicule <= 4">
 			<h1>Destinations</h1>
 			<div>
 				<CommuneSelector v-model="VL_Destination" />
@@ -73,7 +124,30 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q12-VL" v-if="level === 8">
+
+		<div id="Q11bis-PL" v-if="level === 9 && Type_Vehicule > 4">
+			<h1>Allez-vous au port ?</h1>
+			<select v-model="PL_DPort" class="form-control">
+				<option v-for="option in port" :key="option.id" :value="option.output">
+					{{ option.text }}
+				</option>
+			</select>
+			<button v-if="PL_DPort" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div id="Q12-PL" v-if="level === 10 && Type_Vehicule > 4">
+			<h1>Motif Destination</h1>
+			<select v-model="Motif_DPL" class="form-control">
+				<option v-for="option in motif_pl" :key="option.id" :value="option.output">
+					{{ option.text }}
+				</option>
+			</select>
+			<button v-if="Motif_DPL" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div id="Q12-VL" v-if="level === 8 && Type_Vehicule <= 4">
 			<h1>Motif Destination</h1>
 			<select v-model="VL_Motif_Destination" class="form-control">
 				<option v-for="option in motif" :key="option.id" :value="option.output">
@@ -84,7 +158,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q13-VL" v-if="level === 9">
+		<div id="Q13-VL" v-if="level === 9 && Type_Vehicule <= 4">
 			<h1>Frequence</h1>
 			<select v-model="VL_Frequence" class="form-control">
 				<option v-for="option in frequence" :key="option.id" :value="option.output">
@@ -94,7 +168,28 @@
 			<button v-if="VL_Frequence" @click="next" class="btn-next">Suivant</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
-		<div v-if="level === 10">
+
+
+		<div id="Q14PL" v-if="level === 11 && Type_Vehicule > 4">
+			<h2>Question Facultative</h2>
+			<h1>à vide ou poids de la marchandise en tonnes<br>
+				Vide = 0 ou alors indiquez le poids en tonne
+			</h1>
+			<input class="form-control" type="text" v-model="PL_poids" placeholder="1 tonne = 1000 Kgs">
+			<button v-if="PL_poids" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+
+		<div id="Q13PL" v-if="level === 12 && Type_Vehicule > 4">
+			<h2>Question Facultative</h2>
+			<h1>Nature de la marchandise si chargé</h1>
+			<input class="form-control" type="text" v-model="Nature" placeholder="Champs libre">
+			<button v-if="Nature" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level > 11 && Type_Vehicule > 4)">
 			<button @click="submitSurvey" class="btn-next">FINIR QUESTIONNAIRE</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
@@ -105,7 +200,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { postes,types,occupants,motif,frequence } from "./reponses";
+import { postes, types, occupants, motif, frequence, pl_type, port, motif_pl } from "./reponses";
 // import GareSelector from "./GareSelector.vue";
 import CommuneSelector from './CommuneSelector.vue';
 import { db } from "../firebaseConfig";
@@ -120,10 +215,27 @@ const POSTE = ref('');
 const Type_Vehicule = ref('');
 const VL_Occupants = ref('');
 const VL_Origine = ref('');
+const PL_Origine = ref('');
 const VL_Motif_Origine = ref('');
 const VL_Destination = ref('');
 const VL_Motif_Destination = ref('');
 const VL_Frequence = ref('');
+const PL_Type = ref('');
+const Essieux = ref('');
+const PL_OPort = ref('');
+const Motif_OPL = ref('');
+const PL_DPort = ref('');
+const Motif_DPL = ref('');
+const PL_poids = ref('');
+const Nature = ref('');
+
+
+
+
+
+
+
+
 
 
 const startSurvey = () => {
@@ -160,6 +272,16 @@ const submitSurvey = async () => {
 		VL_Destination: VL_Destination.value,
 		VL_Motif_Destination: VL_Motif_Destination.value,
 		VL_Frequence: VL_Frequence.value,
+		PL_Type: PL_Type.value,
+		Essieux: Essieux.value,
+		PL_Origine: PL_Origine.value,
+		PL_OPort: PL_OPort.value,
+		Motif_OPL: Motif_OPL.value,
+		PL_DPort: PL_DPort.value,
+		Motif_DPL: Motif_DPL.value,
+		PL_poids: PL_poids.value,
+		Nature: Nature.value,
+
 	});
 	startDate.value = "";
 	POSTE.value = "";
@@ -170,6 +292,18 @@ const submitSurvey = async () => {
 	VL_Destination.value = "";
 	VL_Motif_Destination.value = "";
 	VL_Frequence.value = "";
+	PL_Type.value = "";
+	Essieux.value = "";
+	PL_Origine.value = "";
+	PL_OPort.value = "";
+	Motif_OPL.value = "";
+	PL_DPort.value = "";
+	Motif_DPL.value = "";
+	PL_poids.value = "";
+	Nature.value = "";
+
+
+
 };
 
 const downloadData = async () => {
@@ -194,6 +328,15 @@ const downloadData = async () => {
 			VL_Destination: "VL_Destination",
 			VL_Motif_Destination: "VL_Motif_Destination",
 			VL_Frequence: "VL_Frequence",
+			PL_Type: "PL_Type",
+			Essieux: "Essieux",
+			PL_Origine: "PL_Origine",
+			PL_OPort: "PL_OPort",
+			Motif_OPL: "Motif_OPL",
+			PL_DPort: "PL_DPort",
+			Motif_DPL: "Motif_DPL",
+			PL_poids: "PL_poids",
+			Nature: "Nature",
 		};
 
 		// Initialize maxWidths with header lengths
@@ -218,6 +361,15 @@ const downloadData = async () => {
 				VL_Destination: docData.VL_Destination || "",
 				VL_Motif_Destination: docData.VL_Motif_Destination || "",
 				VL_Frequence: docData.VL_Frequence || "",
+				PL_Type: docData.PL_Type || "",
+				Essieux: docData.Essieux || "",
+				PL_Origine: docData.PL_Origine || "",
+				PL_OPort: docData.PL_OPort || "",
+				Motif_OPL: docData.Motif_OPL || "",
+				PL_DPort: docData.PL_DPort || "",
+				Motif_DPL: docData.Motif_DPL || "",
+				PL_poids: docData.PL_poids || "",
+				Nature: docData.Nature || "",
 			};
 			data.push(mappedData);
 

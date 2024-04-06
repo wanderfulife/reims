@@ -37,11 +37,26 @@ const postes = [
 ];
 
 const frequence = [
-
 	{ id: 1, output: "1", text: "tous les jours ou presque" },
 	{ id: 2, output: "2", text: "1 ou plusieurs fois par semaine" },
 	{ id: 3, output: "3", text: "3 a 4 fois par mois" },
 	{ id: 4, output: "4", text: "Plus rarement" },
+];
+
+const port = [
+	{ id: 1, output: "1", text: "Oui" },
+	{ id: 2, output: "2", text: "Non" },
+];
+
+const pl_type = [
+	{ id: 1, output: "1", text: "conteneur" },
+	{ id: 2, output: "2", text: "messagerie" },
+	{ id: 3, output: "3", text: "citerne" },
+	{ id: 4, output: "4", text: "frigorifique" },
+	{ id: 5, output: "5", text: "benne basculante" },
+	{ id: 6, output: "6", text: "plateau" },
+	{ id: 7, output: "7", text: "bâché (ou savoyarde)" },
+	{ id: 9, output: "99", text: "autres" },
 ];
 
 const types = [
@@ -75,7 +90,6 @@ const occupants = [
 	{ id: 9, output: "9", text: "9" },
 ];
 
-
 const motif = [
 	{ id: 1, output: "0", text: "domicile" },
 	{ id: 2, output: "1", text: "travail" },
@@ -108,4 +122,14 @@ const motif = [
 	{ id: 21, output: "99", text: "autre" },
 ];
 
-export { postes, types, occupants, motif, frequence };
+const motif_pl = [
+	{ id: 1, output: "0", text: "domicile" },
+	{ id: 2, output: "1", text: "chargement" },
+	{ id: 3, output: "2", text: "déchargement" },
+	{ id: 4, output: "3", text: "mixte chargement et déchargement" },
+	{ id: 5, output: "4", text: "prise / retour véhicule" },
+	{ id: 6, output: "5", text: "dédouanement" },
+	{ id: 7, output: "99", text: "autre" },
+];
+
+export { postes, types, occupants, motif, frequence, pl_type, port, motif_pl };
