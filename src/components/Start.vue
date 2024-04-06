@@ -162,7 +162,7 @@ const submitSurvey = async () => {
 		VL_Frequence: VL_Frequence.value,
 	});
 	startDate.value = "";
-	poste.value = "";
+	POSTE.value = "";
 	Type_Vehicule.value = "";
 	VL_Occupants.value = "";
 	VL_Origine.value = "";
