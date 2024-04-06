@@ -72,7 +72,7 @@
 		</div>
 
 		<div id="Q9-PL" v-if="level === 6 && Type_Vehicule > 4">
-			<h1>Dernier lieu de déchargement</h1>
+			<h1>Dernier lieu de chargement ou déchargement</h1>
 			<div>
 				<CommuneSelector v-model="PL_Origine" />
 			</div>
@@ -177,7 +177,6 @@
 			</h1>
 			<input class="form-control" type="text" v-model="PL_poids" placeholder="1 tonne = 1000 Kgs">
 			<button v-if="PL_poids" @click="next" class="btn-next">Suivant</button>
-			<button @click="back" class="btn-return">retour</button>
 		</div>
 
 
@@ -186,10 +185,9 @@
 			<h1>Nature de la marchandise si chargé</h1>
 			<input class="form-control" type="text" v-model="Nature" placeholder="Champs libre">
 			<button v-if="Nature" @click="next" class="btn-next">Suivant</button>
-			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level > 11 && Type_Vehicule > 4)">
+		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level >= 11 && Type_Vehicule > 4)">
 			<button @click="submitSurvey" class="btn-next">FINIR QUESTIONNAIRE</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
@@ -229,15 +227,6 @@ const Motif_DPL = ref('');
 const PL_poids = ref('');
 const Nature = ref('');
 
-
-
-
-
-
-
-
-
-
 const startSurvey = () => {
 	startDate.value = new Date().toLocaleTimeString("fr-FR").slice(0, 8);
 	level.value++;
@@ -246,7 +235,6 @@ const startSurvey = () => {
 
 const next = () => {
 	level.value++;
-	console.log(level.value)
 
 }
 
@@ -283,6 +271,7 @@ const submitSurvey = async () => {
 		Nature: Nature.value,
 
 	});
+	level.value = 1;
 	startDate.value = "";
 	POSTE.value = "";
 	Type_Vehicule.value = "";
@@ -301,8 +290,6 @@ const submitSurvey = async () => {
 	Motif_DPL.value = "";
 	PL_poids.value = "";
 	Nature.value = "";
-
-
 
 };
 
