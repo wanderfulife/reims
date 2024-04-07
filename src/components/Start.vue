@@ -44,24 +44,6 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q7bis-PL" v-if="level === 4 && Type_Vehicule > 4">
-			<h1>Type de carrosserie</h1>
-			<select v-model="PL_Type" class="form-control">
-				<option v-for="option in pl_type" :key="option.id" :value="option.output">
-					{{ option.text }}
-				</option>
-			</select>
-			<button v-if="PL_Type" @click="next" class="btn-next">Suivant</button>
-			<button @click="back" class="btn-return">retour</button>
-		</div>
-
-		<div id="Q8-PL" v-if="level === 5 && Type_Vehicule > 4">
-			<h1>Nombre d'essieux qui touchent le sol</h1>
-			<input class="form-control" type="text" v-model="Essieux" placeholder="Precisez">
-			<button v-if="Essieux" @click="next" class="btn-next">Suivant</button>
-			<button @click="back" class="btn-return">retour</button>
-		</div>
-
 		<div id="Q9-VL" v-if="level === 5 && Type_Vehicule <= 4">
 			<h1>D’où venez vous?</h1>
 			<div>
@@ -70,27 +52,6 @@
 			<button v-if="VL_Origine" @click="next" class="btn-next">Suivant</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
-
-		<div id="Q9-PL" v-if="level === 6 && Type_Vehicule > 4">
-			<h1>D’où venez vous? <br> Dernier lieu de chargement ou déchargement</h1>
-			<div>
-				<CommuneSelector v-model="PL_Origine" />
-			</div>
-			<button v-if="PL_Origine" @click="next" class="btn-next">Suivant</button>
-			<button @click="back" class="btn-return">retour</button>
-		</div>
-
-		<div id="Q11-PL" v-if="level === 7 && Type_Vehicule > 4">
-			<h1>Où allez vous? <br> Prochain lieu de chargement ou déchargement</h1>
-			<div>
-				<CommuneSelector v-model="PL_Destination" />
-			</div>
-			<button v-if="PL_Destination" @click="next" class="btn-next">Suivant</button>
-			<button @click="back" class="btn-return">retour</button>
-		</div>
-
-
-
 
 		<div id="Q10-VL" v-if="level === 6 && Type_Vehicule <= 4">
 			<h1>Motif Origine</h1>
@@ -102,8 +63,6 @@
 			<button v-if="VL_Motif_Origine" @click="next" class="btn-next">Suivant</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
-
-
 
 		<div id="Q11-VL" v-if="level === 7 && Type_Vehicule <= 4">
 			<h1>Destinations</h1>
@@ -136,7 +95,43 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level >= 9 && Type_Vehicule > 4)">
+		<div id="Q7bis-PL" v-if="level === 4 && Type_Vehicule > 4">
+			<h1>Type de carrosserie</h1>
+			<select v-model="PL_Type" class="form-control">
+				<option v-for="option in pl_type" :key="option.id" :value="option.output">
+					{{ option.text }}
+				</option>
+			</select>
+			<button v-if="PL_Type" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div id="Q8-PL" v-if="level === 5 && Type_Vehicule > 4">
+			<h1>Nombre d'essieux qui touchent le sol</h1>
+			<input class="form-control" type="text" v-model="Essieux" placeholder="Precisez">
+			<button v-if="Essieux" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div id="Q9-PL" v-if="level === 6 && Type_Vehicule > 4">
+			<h1>D’où venez vous? <br> Dernier lieu de chargement ou déchargement</h1>
+			<div>
+				<CommuneSelector v-model="PL_Origine" />
+			</div>
+			<button v-if="PL_Origine" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div id="Q11-PL" v-if="level === 7 && Type_Vehicule > 4">
+			<h1>Où allez vous? <br> Prochain lieu de chargement ou déchargement</h1>
+			<div>
+				<CommuneSelector v-model="PL_Destination" />
+			</div>
+			<button v-if="PL_Destination" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level >= 7 && Type_Vehicule > 4)">
 			<button @click="submitSurvey" class="btn-next">FINIR QUESTIONNAIRE</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
@@ -162,21 +157,15 @@ const POSTE = ref('');
 const Type_Vehicule = ref('');
 const VL_Occupants = ref('');
 const VL_Origine = ref('');
-const PL_Origine = ref('');
-const PL_Destination = ref('');
-
 const VL_Motif_Origine = ref('');
 const VL_Destination = ref('');
 const VL_Motif_Destination = ref('');
 const VL_Frequence = ref('');
 const PL_Type = ref('');
+const PL_Origine = ref('');
+const PL_Destination = ref('');
 const Essieux = ref('');
-const PL_OPort = ref('');
-const Motif_OPL = ref('');
-const PL_DPort = ref('');
-const Motif_DPL = ref('');
-const PL_poids = ref('');
-const Nature = ref('');
+
 
 const startSurvey = () => {
 	startDate.value = new Date().toLocaleTimeString("fr-FR").slice(0, 8);
@@ -215,8 +204,6 @@ const submitSurvey = async () => {
 		Essieux: Essieux.value,
 		PL_Origine: PL_Origine.value,
 		PL_Destination: PL_Destination.value,
-	
-
 	});
 	level.value = 1;
 	startDate.value = "";
