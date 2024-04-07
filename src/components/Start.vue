@@ -29,7 +29,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q7-Type_vehicule" v-if="level === 4">
+		<div id="Q7-Type_vehicule" v-if="level === 4 && Type_Vehicule <= 4">
 			<h1>Type de véhicule</h1>
 			<select v-model="Type_Vehicule" class="form-control">
 				<option v-for="option in types" :key="option.id" :value="option.output">
