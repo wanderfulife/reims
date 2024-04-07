@@ -145,7 +145,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div v-if="(level > 10 && Type_Vehicule <= 4) || (level >= 7 && Type_Vehicule > 4)">
+		<div v-if="(level > 10 && Type_Vehicule <= 4) || (level > 7 && Type_Vehicule > 4)">
 			<button @click="submitSurvey" class="btn-next">FINIR QUESTIONNAIRE</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
@@ -162,7 +162,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { postes, types, occupants, motif, frequence, pl_type, port, motif_pl } from "./reponses";
 // import GareSelector from "./GareSelector.vue";
 import CommuneSelector from './CommuneSelector.vue';
@@ -200,8 +200,10 @@ const getDocCountFromLocalStorage = () => {
 	docCount.value = savedCount ? parseInt(savedCount, 10) : 0;
 };
 
-// Call this function when the app initializes
-getDocCountFromLocalStorage();
+onMounted(() => {
+	getDocCountFromLocalStorage();
+});
+
 
 // And update local storage whenever docCount changes
 watch(docCount, (newCount) => {
