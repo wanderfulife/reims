@@ -102,9 +102,9 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q6_PL" v-if="level === 3">
+		<div id="Q6_PL" v-if="level === 3 && Type_Vehicule > 4"">
 			<h1>Code Pays (immatriculation du véhicule plaque à l'avant)</h1>
-			<input class="form-control" type="text" v-model="PL_Plaque" placeholder="Precisions">
+			<input class=" form-control" type="text" v-model="PL_Plaque" placeholder="Precisions">
 			<button v-if="PL_Plaque" @click="next" class="btn-next">Suivant</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
