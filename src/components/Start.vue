@@ -102,14 +102,14 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q6_PL" v-if="level === 3 && Type_Vehicule > 4"">
+		<div id="Q6_PL" v-if="level === 4 && Type_Vehicule > 4">
 			<h1>Code Pays (immatriculation du véhicule plaque à l'avant)</h1>
 			<input class=" form-control" type="text" v-model="PL_Plaque" placeholder="Precisions">
 			<button v-if="PL_Plaque" @click="next" class="btn-next">Suivant</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q7bis-PL" v-if="level === 4 && Type_Vehicule > 4">
+		<div id="Q7bis-PL" v-if="level === 5 && Type_Vehicule > 4">
 			<h1>Type de carrosserie</h1>
 			<select v-model="PL_Type" class="form-control">
 				<option v-for="option in pl_type" :key="option.id" :value="option.output">
@@ -120,14 +120,14 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q8-PL" v-if="level === 5 && Type_Vehicule > 4">
+		<div id="Q8-PL" v-if="level === 6 && Type_Vehicule > 4">
 			<h1>Nombre d'essieux qui touchent le sol</h1>
 			<input class="form-control" type="text" v-model="Essieux" placeholder="Precisez">
 			<button v-if="Essieux" @click="next" class="btn-next">Suivant</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q9-PL" v-if="level === 6 && Type_Vehicule > 4">
+		<div id="Q9-PL" v-if="level === 7 && Type_Vehicule > 4">
 			<h1>D’où venez vous? <br> Dernier lieu de chargement ou déchargement</h1>
 			<div>
 				<CommuneSelector v-model="PL_Origine" />
@@ -136,7 +136,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q11-PL" v-if="level === 7 && Type_Vehicule > 4">
+		<div id="Q11-PL" v-if="level === 8 && Type_Vehicule > 4">
 			<h1>Où allez vous? <br> Prochain lieu de chargement ou déchargement</h1>
 			<div>
 				<CommuneSelector v-model="PL_Destination" />
@@ -145,7 +145,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div v-if="(level > 10 && Type_Vehicule <= 4) || (level > 7 && Type_Vehicule > 4)">
+		<div v-if="(level > 10 && Type_Vehicule <= 4) || (level > 8 && Type_Vehicule > 4)">
 			<button @click="submitSurvey" class="btn-next">FINIR QUESTIONNAIRE</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
