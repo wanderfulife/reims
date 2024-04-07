@@ -2,37 +2,37 @@ const postes = [
 	{
 		id: 1,
 		output: "21",
-		text: "21 - Giratoire D966 x D30 - BRIMONT",
+		text: "21 - D966 - Nord/Sud - Giratoire D966 x D30 - BRIMONT",
 	},
 	{
 		id: 2,
 		output: "22",
-		text: "22 - Nord croisement D74/D31 - BOULT-SUR-SUIPPE",
+		text: "22 - D31 - Nord/Sud - Nord croisement D74/D31 - BOULT-SUR-SUIPPE",
 	},
 	{
 		id: 3,
 		output: "23",
-		text: "23 - Entrée Est de Bétheniville - BETHENIVILLE",
+		text: "23 - D980 - Est/Ouest - Entrée Est de Bétheniville - BETHENIVILLE",
 	},
 	{
 		id: 4,
 		output: "24",
-		text: "24 - Sortie Nord-Ouest de Saint-Hilaire-le-Grand - SAINT-HILAIRE-LE-GRAND",
+		text: "24 - D931 - Est/Ouest - Sortie Nord-Ouest de Saint-Hilaire-le-Grand - SAINT-HILAIRE-LE-GRAND",
 	},
 	{
 		id: 5,
 		output: "25",
-		text: "25 - Giratoire D944 x D19 - LIVRY-LOUVERCY",
+		text: "25 - D944 - Sud/Nord - Giratoire D944 x D19 - LIVRY-LOUVERCY",
 	},
 	{
 		id: 6,
 		output: "26",
-		text: "26 - Giratoire D951 x D71 - ST IMOGES",
+		text: "26 - D951 - Sud/Nord - Giratoire D951 x D71 - ST IMOGES",
 	},
 	{
 		id: 7,
 		output: "27",
-		text: "23 - Au Sud de la D2 - ANTHENAY",
+		text: "27 - D980 - Ouest/Est -  Au Sud de la D2 - ANTHENAY",
 	},
 ];
 

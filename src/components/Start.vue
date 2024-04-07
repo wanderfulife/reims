@@ -82,17 +82,6 @@
 
 
 
-		<div id="Q9bis-PL" v-if="level === 7 && Type_Vehicule > 4">
-			<h1>Venez-vous du port ?</h1>
-			<select v-model="PL_OPort" class="form-control">
-				<option v-for="option in port" :key="option.id" :value="option.output">
-					{{ option.text }}
-				</option>
-			</select>
-			<button v-if="PL_OPort" @click="next" class="btn-next">Suivant</button>
-			<button @click="back" class="btn-return">retour</button>
-		</div>
-
 		<div id="Q10-VL" v-if="level === 6 && Type_Vehicule <= 4">
 			<h1>Motif Origine</h1>
 			<select v-model="VL_Motif_Origine" class="form-control">
@@ -104,16 +93,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q10-PL" v-if="level === 8 && Type_Vehicule > 4">
-			<h1>Motif Origine</h1>
-			<select v-model="Motif_OPL" class="form-control">
-				<option v-for="option in motif_pl" :key="option.id" :value="option.output">
-					{{ option.text }}
-				</option>
-			</select>
-			<button v-if="Motif_OPL" @click="next" class="btn-next">Suivant</button>
-			<button @click="back" class="btn-return">retour</button>
-		</div>
+	
 
 		<div id="Q11-VL" v-if="level === 7 && Type_Vehicule <= 4">
 			<h1>Destinations</h1>
@@ -121,29 +101,6 @@
 				<CommuneSelector v-model="VL_Destination" />
 			</div>
 			<button v-if="VL_Destination" @click="next" class="btn-next">Suivant</button>
-			<button @click="back" class="btn-return">retour</button>
-		</div>
-
-
-		<div id="Q11bis-PL" v-if="level === 9 && Type_Vehicule > 4">
-			<h1>Allez-vous au port ?</h1>
-			<select v-model="PL_DPort" class="form-control">
-				<option v-for="option in port" :key="option.id" :value="option.output">
-					{{ option.text }}
-				</option>
-			</select>
-			<button v-if="PL_DPort" @click="next" class="btn-next">Suivant</button>
-			<button @click="back" class="btn-return">retour</button>
-		</div>
-
-		<div id="Q12-PL" v-if="level === 10 && Type_Vehicule > 4">
-			<h1>Motif Destination</h1>
-			<select v-model="Motif_DPL" class="form-control">
-				<option v-for="option in motif_pl" :key="option.id" :value="option.output">
-					{{ option.text }}
-				</option>
-			</select>
-			<button v-if="Motif_DPL" @click="next" class="btn-next">Suivant</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
@@ -170,24 +127,7 @@
 		</div>
 
 
-		<div id="Q14PL" v-if="level === 11 && Type_Vehicule > 4">
-			<h2>Question Facultative</h2>
-			<h1>à vide ou poids de la marchandise en tonnes<br>
-				Vide = 0 ou alors indiquez le poids en tonne
-			</h1>
-			<input class="form-control" type="text" v-model="PL_poids" placeholder="1 tonne = 1000 Kgs">
-			<button v-if="PL_poids" @click="next" class="btn-next">Suivant</button>
-		</div>
-
-
-		<div id="Q13PL" v-if="level === 12 && Type_Vehicule > 4">
-			<h2>Question Facultative</h2>
-			<h1>Nature de la marchandise si chargé</h1>
-			<input class="form-control" type="text" v-model="Nature" placeholder="Champs libre">
-			<button v-if="Nature" @click="next" class="btn-next">Suivant</button>
-		</div>
-
-		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level >= 11 && Type_Vehicule > 4)">
+		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level >= 6 && Type_Vehicule > 4)">
 			<button @click="submitSurvey" class="btn-next">FINIR QUESTIONNAIRE</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
@@ -245,7 +185,7 @@ const back = () => {
 
 
 const submitSurvey = async () => {
-	level.value = 1;
+	level.value = 2;
 	await addDoc(surveyCollectionRef, {
 		HEURE_DEBUT: startDate.value,
 		DATE: new Date().toLocaleDateString("fr-FR").replace(/\//g, "-"),
