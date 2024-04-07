@@ -22,7 +22,7 @@
 			<button @click="startSurvey" class="btn-next">COMMENCER QUESTIONNAIRE</button>
 		</div>
 
-		<div id="Q6_VL" v-if="level === 3">
+		<div id="Q6_VL" v-if="level === 3 && Type_Vehicule <= 4">
 			<h1>Code Pays (immatriculation du véhicule plaque à l'avant)</h1>
 			<input class="form-control" type="text" v-model="VL_Plaque" placeholder="Precisions">
 			<button v-if="VL_Plaque" @click="next" class="btn-next">Suivant</button>
@@ -154,15 +154,12 @@
 
 		<button class="btn-fin" @click="downloadData">download DATA</button>
 
-		<br><br><br><br>
-		<div class="doc-count-display">
-			Number of surveys submitted: {{ docCount }}
-		</div>
+
 	</div>
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref } from "vue";
 import { postes, types, occupants, motif, frequence, pl_type, port, motif_pl } from "./reponses";
 // import GareSelector from "./GareSelector.vue";
 import CommuneSelector from './CommuneSelector.vue';
@@ -188,27 +185,10 @@ const PL_Destination = ref('');
 const Essieux = ref('');
 const VL_Plaque = ref('');
 const PL_Plaque = ref('');
-const docCount = ref(0); // Initialize document count
 
 
-const updateDocCountInLocalStorage = () => {
-	localStorage.setItem('docCount', docCount.value.toString());
-};
-
-const getDocCountFromLocalStorage = () => {
-	const savedCount = localStorage.getItem('docCount');
-	docCount.value = savedCount ? parseInt(savedCount, 10) : 0;
-};
-
-onMounted(() => {
-	getDocCountFromLocalStorage();
-});
 
 
-// And update local storage whenever docCount changes
-watch(docCount, (newCount) => {
-	updateDocCountInLocalStorage();
-});
 
 const startSurvey = () => {
 	startDate.value = new Date().toLocaleTimeString("fr-FR").slice(0, 8);
@@ -242,16 +222,15 @@ const submitSurvey = async () => {
 		VL_Destination: VL_Destination.value,
 		VL_Motif_Destination: VL_Motif_Destination.value,
 		VL_Frequence: VL_Frequence.value,
+		VL_Plaque: VL_Plaque.value,
 		PL_Type: PL_Type.value,
 		Essieux: Essieux.value,
 		PL_Origine: PL_Origine.value,
 		PL_Destination: PL_Destination.value,
-		VL_Plaque: VL_Plaque.value,
 		PL_Plaque: PL_Plaque.value,
 
 	});
 	level.value = 2;
-	docCount.value++; // Increment the counter
 	startDate.value = "";
 	POSTE.value = "";
 	Type_Vehicule.value = "";
@@ -261,11 +240,11 @@ const submitSurvey = async () => {
 	VL_Destination.value = "";
 	VL_Motif_Destination.value = "";
 	VL_Frequence.value = "";
+	VL_Plaque.value = "";
 	PL_Type.value = "";
 	Essieux.value = "";
 	PL_Origine.value = "";
 	PL_Destination.value = "";
-	VL_Plaque.value = "";
 	PL_Plaque.value = "";
 
 	
@@ -293,11 +272,11 @@ const downloadData = async () => {
 			VL_Destination: "VL_Destination",
 			VL_Motif_Destination: "VL_Motif_Destination",
 			VL_Frequence: "VL_Frequence",
+			VL_Plaque: "VL_Plaque",
 			PL_Type: "PL_Type",
 			Essieux: "Essieux",
 			PL_Origine: "PL_Origine",
 			PL_Destination: "PL_Destination",
-			VL_Plaque: "VL_Plaque",
 			PL_Plaque: "PL_Plaque",
 
 		};
@@ -324,11 +303,11 @@ const downloadData = async () => {
 				VL_Destination: docData.VL_Destination || "",
 				VL_Motif_Destination: docData.VL_Motif_Destination || "",
 				VL_Frequence: docData.VL_Frequence || "",
+				VL_Plaque: docData.VL_Plaque || "",
 				PL_Type: docData.PL_Type || "",
 				Essieux: docData.Essieux || "",
 				PL_Origine: docData.PL_Origine || "",
 				PL_Destination: docData.PL_Destination || "",
-				VL_Plaque: docData.VL_Plaque || "",
 				PL_Plaque: docData.PL_Plaque || "",
 
 				
