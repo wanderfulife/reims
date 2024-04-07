@@ -22,14 +22,9 @@
 			<button @click="startSurvey" class="btn-next">COMMENCER QUESTIONNAIRE</button>
 		</div>
 
-		<div id="Q6_VL" v-if="level === 3 && Type_Vehicule <= 4">
-			<h1>Code Pays (immatriculation du véhicule plaque à l'avant)</h1>
-			<input class="form-control" type="text" v-model="VL_Plaque" placeholder="Precisions">
-			<button v-if="VL_Plaque" @click="next" class="btn-next">Suivant</button>
-			<button @click="back" class="btn-return">retour</button>
-		</div>
 
-		<div id="Q7-Type_vehicule" v-if="level === 4 && Type_Vehicule <= 4">
+
+		<div id="Q7-Type_vehicule" v-if="level === 3">
 			<h1>Type de véhicule</h1>
 			<select v-model="Type_Vehicule" class="form-control">
 				<option v-for="option in types" :key="option.id" :value="option.output">
@@ -40,6 +35,12 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
+		<div id="Q7bis_VL" v-if="level === 4 && Type_Vehicule <= 4">
+			<h1>Code Pays (immatriculation du véhicule plaque à l'avant)</h1>
+			<input class="form-control" type="text" v-model="VL_Plaque" placeholder="Precisions">
+			<button v-if="VL_Plaque" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
 		<div id="Q8-VL" v-if="level === 5 && Type_Vehicule <= 4">
 			<h1>Nombre d'occupants</h1>
 			<select v-model="VL_Occupants" class="form-control">
