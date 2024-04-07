@@ -136,12 +136,19 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 		<img class="logo" src="../assets/Alycelogo.webp" alt="Logo Alyce">
+
+
 		<button class="btn-fin" @click="downloadData">download DATA</button>
+
+			<br><br><br><br>
+		<div class="doc-count-display">
+			Number of surveys submitted: {{ docCount }}
+		</div>
 	</div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { postes, types, occupants, motif, frequence, pl_type, port, motif_pl } from "./reponses";
 // import GareSelector from "./GareSelector.vue";
 import CommuneSelector from './CommuneSelector.vue';
@@ -165,7 +172,25 @@ const PL_Type = ref('');
 const PL_Origine = ref('');
 const PL_Destination = ref('');
 const Essieux = ref('');
+const docCount = ref(0); // Initialize document count
 
+
+const updateDocCountInLocalStorage = () => {
+	localStorage.setItem('docCount', docCount.value.toString());
+};
+
+const getDocCountFromLocalStorage = () => {
+	const savedCount = localStorage.getItem('docCount');
+	docCount.value = savedCount ? parseInt(savedCount, 10) : 0;
+};
+
+// Call this function when the app initializes
+getDocCountFromLocalStorage();
+
+// And update local storage whenever docCount changes
+watch(docCount, (newCount) => {
+	updateDocCountInLocalStorage();
+});
 
 const startSurvey = () => {
 	startDate.value = new Date().toLocaleTimeString("fr-FR").slice(0, 8);
@@ -185,7 +210,6 @@ const back = () => {
 
 
 const submitSurvey = async () => {
-	level.value = 2;
 	await addDoc(surveyCollectionRef, {
 		HEURE_DEBUT: startDate.value,
 		DATE: new Date().toLocaleDateString("fr-FR").replace(/\//g, "-"),
@@ -205,7 +229,8 @@ const submitSurvey = async () => {
 		PL_Origine: PL_Origine.value,
 		PL_Destination: PL_Destination.value,
 	});
-	level.value = 1;
+	docCount.value++; // Increment the counter
+	level.value = 2;
 	startDate.value = "";
 	POSTE.value = "";
 	Type_Vehicule.value = "";
