@@ -145,7 +145,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level >= 10 && Type_Vehicule > 4)">
+		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level >= 7 && Type_Vehicule > 4)">
 			<button @click="submitSurvey" class="btn-next">FINIR QUESTIONNAIRE</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
@@ -249,7 +249,6 @@ const submitSurvey = async () => {
 
 	});
 	docCount.value++; // Increment the counter
-	level.value = 2;
 	startDate.value = "";
 	POSTE.value = "";
 	Type_Vehicule.value = "";
