@@ -22,7 +22,14 @@
 			<button @click="startSurvey" class="btn-next">COMMENCER QUESTIONNAIRE</button>
 		</div>
 
-		<div id="Q7-Type_vehicule" v-if="level === 3">
+		<div id="Q6_VL" v-if="level === 3">
+			<h1>Code Pays (immatriculation du véhicule plaque à l'avant)</h1>
+			<input class="form-control" type="text" v-model="VL_Plaque" placeholder="Precisions">
+			<button v-if="VL_Plaque" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div id="Q7-Type_vehicule" v-if="level === 4">
 			<h1>Type de véhicule</h1>
 			<select v-model="Type_Vehicule" class="form-control">
 				<option v-for="option in types" :key="option.id" :value="option.output">
@@ -33,7 +40,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q8-VL" v-if="level === 4 && Type_Vehicule <= 4">
+		<div id="Q8-VL" v-if="level === 5 && Type_Vehicule <= 4">
 			<h1>Nombre d'occupants</h1>
 			<select v-model="VL_Occupants" class="form-control">
 				<option v-for="option in occupants" :key="option.id" :value="option.output">
@@ -44,7 +51,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q9-VL" v-if="level === 5 && Type_Vehicule <= 4">
+		<div id="Q9-VL" v-if="level === 6 && Type_Vehicule <= 4">
 			<h1>D’où venez vous?</h1>
 			<div>
 				<CommuneSelector v-model="VL_Origine" />
@@ -53,7 +60,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q10-VL" v-if="level === 6 && Type_Vehicule <= 4">
+		<div id="Q10-VL" v-if="level === 7 && Type_Vehicule <= 4">
 			<h1>Motif Origine</h1>
 			<select v-model="VL_Motif_Origine" class="form-control">
 				<option v-for="option in motif" :key="option.id" :value="option.output">
@@ -64,7 +71,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q11-VL" v-if="level === 7 && Type_Vehicule <= 4">
+		<div id="Q11-VL" v-if="level === 8 && Type_Vehicule <= 4">
 			<h1>Destinations</h1>
 			<div>
 				<CommuneSelector v-model="VL_Destination" />
@@ -73,7 +80,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q12-VL" v-if="level === 8 && Type_Vehicule <= 4">
+		<div id="Q12-VL" v-if="level === 9 && Type_Vehicule <= 4">
 			<h1>Motif Destination</h1>
 			<select v-model="VL_Motif_Destination" class="form-control">
 				<option v-for="option in motif" :key="option.id" :value="option.output">
@@ -84,7 +91,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div id="Q13-VL" v-if="level === 9 && Type_Vehicule <= 4">
+		<div id="Q13-VL" v-if="level === 10 && Type_Vehicule <= 4">
 			<h1>Frequence</h1>
 			<select v-model="VL_Frequence" class="form-control">
 				<option v-for="option in frequence" :key="option.id" :value="option.output">
@@ -92,6 +99,13 @@
 				</option>
 			</select>
 			<button v-if="VL_Frequence" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
+		<div id="Q6_PL" v-if="level === 3">
+			<h1>Code Pays (immatriculation du véhicule plaque à l'avant)</h1>
+			<input class="form-control" type="text" v-model="PL_Plaque" placeholder="Precisions">
+			<button v-if="PL_Plaque" @click="next" class="btn-next">Suivant</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
@@ -131,7 +145,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level >= 7 && Type_Vehicule > 4)">
+		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level >= 10 && Type_Vehicule > 4)">
 			<button @click="submitSurvey" class="btn-next">FINIR QUESTIONNAIRE</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
@@ -140,7 +154,7 @@
 
 		<button class="btn-fin" @click="downloadData">download DATA</button>
 
-			<br><br><br><br>
+		<br><br><br><br>
 		<div class="doc-count-display">
 			Number of surveys submitted: {{ docCount }}
 		</div>
@@ -172,6 +186,8 @@ const PL_Type = ref('');
 const PL_Origine = ref('');
 const PL_Destination = ref('');
 const Essieux = ref('');
+const VL_Plaque = ref('');
+const PL_Plaque = ref('');
 const docCount = ref(0); // Initialize document count
 
 
@@ -228,6 +244,9 @@ const submitSurvey = async () => {
 		Essieux: Essieux.value,
 		PL_Origine: PL_Origine.value,
 		PL_Destination: PL_Destination.value,
+		VL_Plaque: VL_Plaque.value,
+		PL_Plaque: PL_Plaque.value,
+
 	});
 	docCount.value++; // Increment the counter
 	level.value = 2;
@@ -244,7 +263,10 @@ const submitSurvey = async () => {
 	Essieux.value = "";
 	PL_Origine.value = "";
 	PL_Destination.value = "";
+	VL_Plaque.value = "";
+	PL_Plaque.value = "";
 
+	
 };
 
 const downloadData = async () => {
@@ -273,6 +295,9 @@ const downloadData = async () => {
 			Essieux: "Essieux",
 			PL_Origine: "PL_Origine",
 			PL_Destination: "PL_Destination",
+			VL_Plaque: "VL_Plaque",
+			PL_Plaque: "PL_Plaque",
+
 		};
 
 		// Initialize maxWidths with header lengths
@@ -301,6 +326,11 @@ const downloadData = async () => {
 				Essieux: docData.Essieux || "",
 				PL_Origine: docData.PL_Origine || "",
 				PL_Destination: docData.PL_Destination || "",
+				VL_Plaque: docData.VL_Plaque || "",
+				PL_Plaque: docData.PL_Plaque || "",
+
+				
+
 			};
 			data.push(mappedData);
 
