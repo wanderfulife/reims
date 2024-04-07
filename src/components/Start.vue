@@ -72,13 +72,23 @@
 		</div>
 
 		<div id="Q9-PL" v-if="level === 6 && Type_Vehicule > 4">
-			<h1>Dernier lieu de chargement ou déchargement</h1>
+			<h1>D’où venez vous? <br> Dernier lieu de chargement ou déchargement</h1>
 			<div>
 				<CommuneSelector v-model="PL_Origine" />
 			</div>
 			<button v-if="PL_Origine" @click="next" class="btn-next">Suivant</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
+
+		<div id="Q11-PL" v-if="level === 7 && Type_Vehicule > 4">
+			<h1>Où allez vous? <br> Prochain lieu de chargement ou déchargement</h1>
+			<div>
+				<CommuneSelector v-model="PL_Destination" />
+			</div>
+			<button v-if="PL_Destination" @click="next" class="btn-next">Suivant</button>
+			<button @click="back" class="btn-return">retour</button>
+		</div>
+
 
 
 
@@ -93,7 +103,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-	
+
 
 		<div id="Q11-VL" v-if="level === 7 && Type_Vehicule <= 4">
 			<h1>Destinations</h1>
@@ -126,8 +136,7 @@
 			<button @click="back" class="btn-return">retour</button>
 		</div>
 
-
-		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level >= 6 && Type_Vehicule > 4)">
+		<div v-if="(level === 10 && Type_Vehicule <= 4) || (level >= 9 && Type_Vehicule > 4)">
 			<button @click="submitSurvey" class="btn-next">FINIR QUESTIONNAIRE</button>
 			<button @click="back" class="btn-return">retour</button>
 		</div>
@@ -154,6 +163,8 @@ const Type_Vehicule = ref('');
 const VL_Occupants = ref('');
 const VL_Origine = ref('');
 const PL_Origine = ref('');
+const PL_Destination = ref('');
+
 const VL_Motif_Origine = ref('');
 const VL_Destination = ref('');
 const VL_Motif_Destination = ref('');
@@ -203,12 +214,8 @@ const submitSurvey = async () => {
 		PL_Type: PL_Type.value,
 		Essieux: Essieux.value,
 		PL_Origine: PL_Origine.value,
-		PL_OPort: PL_OPort.value,
-		Motif_OPL: Motif_OPL.value,
-		PL_DPort: PL_DPort.value,
-		Motif_DPL: Motif_DPL.value,
-		PL_poids: PL_poids.value,
-		Nature: Nature.value,
+		PL_Destination: PL_Destination.value,
+	
 
 	});
 	level.value = 1;
@@ -224,12 +231,7 @@ const submitSurvey = async () => {
 	PL_Type.value = "";
 	Essieux.value = "";
 	PL_Origine.value = "";
-	PL_OPort.value = "";
-	Motif_OPL.value = "";
-	PL_DPort.value = "";
-	Motif_DPL.value = "";
-	PL_poids.value = "";
-	Nature.value = "";
+	PL_Destination.value = "";
 
 };
 
@@ -258,12 +260,7 @@ const downloadData = async () => {
 			PL_Type: "PL_Type",
 			Essieux: "Essieux",
 			PL_Origine: "PL_Origine",
-			PL_OPort: "PL_OPort",
-			Motif_OPL: "Motif_OPL",
-			PL_DPort: "PL_DPort",
-			Motif_DPL: "Motif_DPL",
-			PL_poids: "PL_poids",
-			Nature: "Nature",
+			PL_Destination: "PL_Destination",
 		};
 
 		// Initialize maxWidths with header lengths
@@ -291,12 +288,7 @@ const downloadData = async () => {
 				PL_Type: docData.PL_Type || "",
 				Essieux: docData.Essieux || "",
 				PL_Origine: docData.PL_Origine || "",
-				PL_OPort: docData.PL_OPort || "",
-				Motif_OPL: docData.Motif_OPL || "",
-				PL_DPort: docData.PL_DPort || "",
-				Motif_DPL: docData.Motif_DPL || "",
-				PL_poids: docData.PL_poids || "",
-				Nature: docData.Nature || "",
+				PL_Destination: docData.PL_Destination || "",
 			};
 			data.push(mappedData);
 
