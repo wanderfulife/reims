@@ -233,7 +233,6 @@ const submitSurvey = async () => {
 	});
 	level.value = 2;
 	startDate.value = "";
-	POSTE.value = "";
 	Type_Vehicule.value = "";
 	VL_Occupants.value = "";
 	VL_Origine.value = "";
