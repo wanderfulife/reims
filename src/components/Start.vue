@@ -62,7 +62,7 @@
 		</div>
 
 		<div id="Q10-VL" v-if="level === 7 && Type_Vehicule <= 4">
-			<h1>Motif Origine</h1>
+			<h1>Quel est le motif de votre déplacement à l’origine ?</h1>
 			<select v-model="VL_Motif_Origine" class="form-control">
 				<option v-for="option in motif" :key="option.id" :value="option.output">
 					{{ option.text }}
@@ -73,7 +73,7 @@
 		</div>
 
 		<div id="Q11-VL" v-if="level === 8 && Type_Vehicule <= 4">
-			<h1>Destinations</h1>
+			<h1>Quelle est votre destination ?</h1>
 			<div>
 				<CommuneSelector v-model="VL_Destination" />
 			</div>
@@ -82,7 +82,7 @@
 		</div>
 
 		<div id="Q12-VL" v-if="level === 9 && Type_Vehicule <= 4">
-			<h1>Motif Destination</h1>
+			<h1>Pour quelle raison vous rendez-vous à votre destination ? (motif) </h1>
 			<select v-model="VL_Motif_Destination" class="form-control">
 				<option v-for="option in motif" :key="option.id" :value="option.output">
 					{{ option.text }}
@@ -93,7 +93,7 @@
 		</div>
 
 		<div id="Q13-VL" v-if="level === 10 && Type_Vehicule <= 4">
-			<h1>Frequence</h1>
+			<h1>À quelle fréquence effectuez-vous ce déplacement ?</h1>
 			<select v-model="VL_Frequence" class="form-control">
 				<option v-for="option in frequence" :key="option.id" :value="option.output">
 					{{ option.text }}
@@ -153,7 +153,7 @@
 		<img class="logo" src="../assets/Alycelogo.webp" alt="Logo Alyce">
 
 
-		<!-- <button class="btn-fin" @click="downloadData">download DATA</button> -->
+		<button class="btn-fin" @click="downloadData">download DATA</button>
 
 
 	</div>
