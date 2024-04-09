@@ -19,6 +19,8 @@
 		</div>
 
 		<div v-if="level === 2">
+			<h1>Bonjour,<br> nous faisons une enquête sur votre déplacement en cours pour le compte du Grand Reims, le
+				questionnaire ne durera pas plus que 45 secondes.</h1>
 			<button @click="startSurvey" class="btn-next">COMMENCER QUESTIONNAIRE</button>
 		</div>
 
